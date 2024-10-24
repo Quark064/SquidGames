@@ -1,7 +1,40 @@
 <!DOCTYPE html><head>
-<title>Squid Games</title>
-<link rel=icon type=image/png href=favicon.png>
-</head><body>
+    <title>Squid Games</title>
+    <link rel=icon type=image/png href=favicon.png>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+</head>
 
-<script src=./dist/littlejs.js></script>
-<script src=./src/game.js></script>
+<style>
+    .stripes {
+        margin: 0;
+        height: 100vh;
+        background: repeating-linear-gradient(
+           45deg,
+         rgb(35, 35, 35),
+         rgb(35, 35, 35) 4vw,
+         rgb(42, 42, 42) 4vw,
+         rgb(42, 42, 42) 8vw
+        );
+    }
+
+    @font-face {
+        font-family: "Gambit";
+        src: url("/assets/fonts/Gambit.woff2");
+    }
+
+    @font-face {
+        font-family: "Message";
+        src: url("/assets/fonts/Message.woff2");
+    }
+
+</style>
+
+<body>
+    <script src=/dist/littlejs.min.js></script>
+    <script src=/src/config.js></script>
+    <script src=/src/ui.js></script>
+    <script src=/src/menu.js></script>
+    <script src=/src/game.js></script>
+</body>
