@@ -35,11 +35,11 @@ class JumpPlayer {
         this.velocity = vec2(0, -1);
 
         this.gravityStrength = -0.20;
-        this.heldVelocityMultiplier = 0.20;
+        this.heldVelocityMultiplier = 0.17;
         this.heldMinVelocityApplied = 10;
 
-        this.xVelocityMax = 5;
-        this.xArrowVelStrength = 0.10;
+        this.xVelocityMax = 4;
+        this.xArrowVelStrength = 0.12;
         this.yNegVelocityMax = 4;
         this.slideVelocityDecay = 0.992;
 
@@ -355,13 +355,15 @@ class JumpPlatform extends HitboxObject{
             return false;
         }
 
-        if (player.pos.x < this.start.x || player.pos.x > this.start.x + this.cBoxX) {
+        if (player.pos.x + (player.size.x * 0.5) < this.start.x ||
+            player.pos.x > this.start.x + this.cBoxX) {
             return false;
         }
 
         var centerCompensation = (player.size.y / 2) + (this.cBoxY * 0.5);
 
-        if (player.pos.y - centerCompensation <= this.start.y && this.start.y <= ogPosition.y) {
+        if (player.pos.y - centerCompensation <= this.start.y
+            && this.start.y <= ogPosition.y) {
             return true;
         }
 
@@ -432,7 +434,10 @@ class JumpGame extends Game {
         super();
 
         this.solidObjs = [
-            new SlipFloor(vec2(-300, -150), 32, Sprite.Jump.NormalFloor)
+            new NormalFloor(vec2(-300, -150), 32),
+            new NormalFloor(vec2(0, 25), 10),
+            new SlipFloor(vec2(-250, 175), 10),
+            new NormalFloor(vec2(0, 300), 10),
         ]
 
         this.playAreaOffset = vec2(-50, 0);
@@ -584,7 +589,7 @@ class Orchestrator {
         this.gamePairList = gamePairList;
         this.activePair = startPos;
 
-        this.paused = false;
+        this.paused = true;
     }
 
     isPaused() {
