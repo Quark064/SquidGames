@@ -7,7 +7,7 @@ class UIElement {
 }
 
 class UIBlock extends UIElement {
-    constructor(name, pos, size, color, layer) {
+    constructor(name, pos, size, color, layer, billboard=true) {
         super();
         this.name = name;
 
@@ -15,11 +15,17 @@ class UIBlock extends UIElement {
         this.size = size;
         this.color = color;
         this.layer = layer;
+        this.billboard = billboard;
     }
 
     render() {
+        var pos = this.pos;
+        if (this.billboard) {
+            pos = cameraPos.add(this.pos);
+        }
+
         drawTile(
-            this.pos,
+            pos,
             this.size,
             undefined,
             this.color
@@ -28,7 +34,7 @@ class UIBlock extends UIElement {
 }
 
 class UIImage extends UIElement {
-    constructor(name, pos, size, tileInfo, layer, mirror=undefined, colorOver=undefined) {
+    constructor(name, pos, size, tileInfo, layer, mirror, colorOver, billboard=true) {
         super();
 
         this.name = name;
@@ -39,11 +45,17 @@ class UIImage extends UIElement {
         this.layer = layer;
         this.mirror = mirror;
         this.colorOver = colorOver;
+        this.billboard = billboard;
     }
 
     render() {
+        var pos = this.pos;
+        if (this.billboard) {
+            pos = cameraPos.add(this.pos);
+        }
+
         drawTile(
-            this.pos,
+            pos,
             this.size,
             this.tileInfo,
             this.colorOver,
